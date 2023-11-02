@@ -8,7 +8,7 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model Investor {
+model Project {
   id              Int        @id @default(autoincrement())
   name            String
   email           String?
@@ -25,10 +25,21 @@ model Investor {
   updatedAt       DateTime   @updatedAt
   checksize       CheckSize? @relation(fields: [checksize_id], references: [id])
   checksize_id    Int?
+
+  // new fields
+  slogan String?
+  logo   String?
+  tools  String?
+
+  twitterUrl   String?
+  githubUrl    String?
+  linkedinUrl  String?
+  instagramUrl String?
+  facebookUrl  String?
 }
 
 model CheckSize {
-  id     Int        @unique
-  name   String     @unique
-  angels Investor[]
+  id     Int       @unique
+  name   String    @unique
+  angels Project[]
 }

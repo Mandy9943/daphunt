@@ -1,40 +1,40 @@
-import { kFormatter } from '../utils/utils';
+import { kFormatter } from "../utils/utils";
 
 export default function Stats({ angelsLength, averageCheck, companiesLength }) {
   return (
     <div className="relative mt-10">
       <div className="absolute inset-0 h-1/2" />
       <div className="relative mx-auto max-w-7xl">
-        <dl className="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-4">
-          <div className="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-            <dt className="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
+        <dl className="rounded-lg bg-white dark:bg-zinc-800 shadow-lg sm:grid sm:grid-cols-4">
+          <div className="flex flex-col border-b border-gray-100 dark:border-gray-900 p-6 text-center sm:border-0 sm:border-r">
+            <dt className="order-2 mt-2 text-lg font-medium leading-6 text-muted-foreground">
               Angel Investors
             </dt>
-            <dd className="order-1 text-5xl font-bold tracking-tight text-black">
+            <dd className="order-1 text-5xl font-bold tracking-tight ">
               {angelsLength}
             </dd>
           </div>
-          <div className="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-            <dt className="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
+          <div className="flex flex-col border-t border-b border-gray-100 dark:border-gray-900 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+            <dt className="order-2 mt-2 text-lg font-medium leading-6 text-muted-foreground">
               Average Check Size
             </dt>
-            <dd className="order-1 text-5xl font-bold tracking-tight text-black">
-              {kFormatter(averageCheck) ? '$' + kFormatter(averageCheck) : '$0'}
+            <dd className="order-1 text-5xl font-bold tracking-tight ">
+              {kFormatter(averageCheck) ? "$" + kFormatter(averageCheck) : "$0"}
             </dd>
           </div>
-          <div className="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-            <dt className="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
+          <div className="flex flex-col border-t border-b border-gray-100 dark:border-gray-900 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+            <dt className="order-2 mt-2 text-lg font-medium leading-6 text-muted-foreground">
               Confirmed Investments
             </dt>
-            <dd className="order-1 text-5xl font-bold tracking-tight text-black">
+            <dd className="order-1 text-5xl font-bold tracking-tight ">
               {(angelsLength * 2.5).toFixed(0)}+
             </dd>
           </div>
-          <div className="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
-            <dt className="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
+          <div className="flex flex-col border-t border-gray-100 dark:border-gray-900 p-6 text-center sm:border-0 sm:border-l">
+            <dt className="order-2 mt-2 text-lg font-medium leading-6 text-muted-foreground">
               Companies
             </dt>
-            <dd className="order-1 text-5xl font-bold tracking-tight text-black">
+            <dd className="order-1 text-5xl font-bold tracking-tight ">
               {companiesLength}
             </dd>
           </div>
