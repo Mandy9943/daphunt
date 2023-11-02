@@ -20,15 +20,14 @@ const SubmitDappView = () => {
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      name: "Azulprusi",
-      slogan: "Keep Us Secret",
-      site: "https://supabase.com/partners/integrations/prisma#connection-pooling-with-supabase",
-      apr: "200",
-      description: "54;pk;p'lkjl;k,",
-      tools: "swap pool",
+      name: "",
+      slogan: "",
+      site: "",
+      apr: "",
+      description: "",
+      tools: "",
       logo: null,
-      twitter:
-        "https://supabase.com/partners/integrations/prisma#connection-pooling-with-supabase",
+      twitter: "",
       github: "",
     },
     onSubmit: async (values) => {
