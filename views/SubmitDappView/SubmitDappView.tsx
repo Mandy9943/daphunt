@@ -34,9 +34,7 @@ const SubmitDappView = () => {
       const logo: File = values.logo as any;
 
       const fileExt = logo.name.split(".").pop();
-      const filePath = `${
-        values.name
-      }-${Math.random()}-${Math.random()}.${fileExt}`;
+      const filePath = `${values.name.trim()}-${Math.random()}-${Math.random()}.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage
         .from("logos")
