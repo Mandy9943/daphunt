@@ -1,6 +1,8 @@
 import RootProviders from "@/providers/rootProviders";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
 import "../styles/globals.css";
 
@@ -43,6 +45,7 @@ export default function RootLayout({
     <html lang="en" className="light">
       <body>
         <RootProviders>
+          <ToastContainer />
           <div className="min-h-screen px-6 lg:px-8">
             <div className="mx-auto max-w-6xl pt-4">
               <Header />

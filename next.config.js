@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["media.elrond.com", "placehold.co"],
+    domains: ["id.maiar.com", "flzavuqgiwduroylglww.supabase.co"],
   },
   transpilePackages: ["@multiversx/sdk-dapp"],
   webpack: (config) => {
