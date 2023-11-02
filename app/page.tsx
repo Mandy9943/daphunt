@@ -2,7 +2,7 @@ import { cache } from "react";
 import prisma from "../utils/prisma";
 import Dashboard from "./ClientPage";
 
-export const revalidate = 86400; // revalidate the data at most every 24 hours
+export const revalidate = 300; // revalidate the data at most every 5 min
 
 const getAllAngels = cache(async () => {
   const data = await prisma.project.findMany({
