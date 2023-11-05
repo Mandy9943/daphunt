@@ -10,7 +10,7 @@ export const dappSchema = z.object({
   slogan: z.string().min(3).max(200),
   site: z.string().url(),
   apr: z.string(),
-  tools: z.string(),
+  tools: z.array(z.string()),
   description: z.string().min(3).max(300),
   twitter: z.optional(z.string()),
   github: z.optional(z.string()),

@@ -5,10 +5,10 @@ export function compare(a: any, b: any) {
   // if (a.twitterVerified !== true && b.twitterVerified === true) {
   //   return 1;
   // }
-  if (a.checksize_id > b.checksize_id) {
+  if (a._count.votedUp > b._count.votedUp) {
     return -1;
   }
-  if (a.checksize_id < b.checksize_id) {
+  if (a._count.votedUp < b._count.votedUp) {
     return 1;
   }
   return 0;
@@ -64,7 +64,7 @@ export const searchOptions = {
   keys: ["name", "email", "company", "title", "details"],
 };
 
-export const ErrorMessage = (error: any): string => {
+export const ErrorMessage = (error: any, defaultMessage?: string): string => {
   let finalErrorMessage = "";
 
   if (error?.response?.data?.message) {
@@ -74,7 +74,7 @@ export const ErrorMessage = (error: any): string => {
   } else if (typeof error === "string") {
     finalErrorMessage = error;
   } else {
-    finalErrorMessage = "Unknown error";
+    finalErrorMessage = defaultMessage || "Unknown error";
   }
 
   return finalErrorMessage;

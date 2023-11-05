@@ -13,6 +13,7 @@ import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { toFormikValidationSchema } from "zod-formik-adapter";
+import ToolsSelector from "./ToolsSelector";
 
 const SubmitDappView = () => {
   const address = useAppSelector(selectUserAddress);
@@ -25,7 +26,7 @@ const SubmitDappView = () => {
       site: "",
       apr: "",
       description: "",
-      tools: "",
+      tools: [],
       logo: null,
       twitter: "",
       github: "",
@@ -36,23 +37,20 @@ const SubmitDappView = () => {
       const fileExt = logo.name.split(".").pop();
       const filePath = `${values.name.trim()}-${Math.random()}-${Math.random()}.${fileExt}`;
 
-      const { error: uploadError } = await supabase.storage
-        .from("logos")
-        .upload(filePath, logo);
-
-      if (uploadError) {
-        throw uploadError;
-      }
-
       await toast.promise(
-        api.post("/submit-dapp", {
-          data: {
-            ...values,
-            logo: filePath,
-          },
-          address,
-        }),
+        Promise.all([
+          supabase.storage.from("logos").upload(filePath, logo),
+          api.post("/submit-dapp", {
+            data: {
+              ...values,
+              logo: filePath,
+            },
+            address,
+          }),
+        ]),
         {
+          success: "Dapp submitted!",
+          pending: "Submitting dapp...",
           error: {
             render({ data }) {
               // When the promise reject, data will contains the error
@@ -78,7 +76,10 @@ const SubmitDappView = () => {
     formik.setFieldValue("logo", file);
   };
 
-  console.log("error", formik.errors);
+  const handleToolsChange = (tools: string[]) => {
+    formik.setFieldValue("tools", tools);
+  };
+  console.log("erros", formik.errors);
 
   return (
     <div className="my-10">
@@ -117,24 +118,20 @@ const SubmitDappView = () => {
             </div>
 
             <div className="flex flex-col gap-3">
-              <Label>Dapp APY</Label>
-              <Input placeholder="200%" name="apr" {...comonProps} />
+              <Label>
+                Dapp APY <span className="text-muted-foreground">(in %)</span>{" "}
+              </Label>
+              <Input placeholder="200" name="apr" {...comonProps} />
             </div>
 
             <div className="flex flex-col gap-3">
               <Label>
                 Dapp tools{" "}
                 <span className="text-muted-foreground">
-                  (sparated by coma)
+                  (use enter to add a new tool)
                 </span>{" "}
               </Label>
-              <textarea
-                placeholder="pools, swaps, dollar cost averaging"
-                name="tools"
-                rows={3}
-                className="p-3 rounded bg-transparent border"
-                {...comonProps}
-              />
+              <ToolsSelector onToolsChange={handleToolsChange} />
             </div>
 
             <div className="flex flex-col gap-3">

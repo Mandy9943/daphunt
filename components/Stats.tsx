@@ -1,6 +1,20 @@
-import { kFormatter } from "../utils/utils";
+import { formatNumber } from "@/utils/functions/formatBalance";
 
-export default function Stats({ angelsLength, averageCheck, companiesLength }) {
+interface IProps {
+  angelsLength: number;
+  averageCheck: number;
+  companiesLength: number;
+  votes: number;
+}
+
+export default function Stats({
+  angelsLength,
+  averageCheck,
+  companiesLength,
+  votes,
+}: IProps) {
+  console.log();
+
   return (
     <div className="relative mt-10">
       <div className="absolute inset-0 h-1/2" />
@@ -11,7 +25,7 @@ export default function Stats({ angelsLength, averageCheck, companiesLength }) {
               Dapps
             </dt>
             <dd className="order-1 text-5xl font-bold tracking-tight ">
-              {angelsLength}
+              {formatNumber(angelsLength)}
             </dd>
           </div>
           <div className="flex flex-col border-t border-b border-gray-100 dark:border-gray-900 p-6 text-center sm:border-0 sm:border-l sm:border-r">
@@ -19,15 +33,19 @@ export default function Stats({ angelsLength, averageCheck, companiesLength }) {
               Average APY
             </dt>
             <dd className="order-1 text-5xl font-bold tracking-tight ">
-              {kFormatter(averageCheck) ? "$" + kFormatter(averageCheck) : "$0"}
+              {averageCheck
+                ? (averageCheck / 100).toLocaleString(undefined, {
+                    style: "percent",
+                  })
+                : "0%"}
             </dd>
           </div>
           <div className="flex flex-col border-t border-b border-gray-100 dark:border-gray-900 p-6 text-center sm:border-0 sm:border-l sm:border-r">
             <dt className="order-2 mt-2 text-lg font-medium leading-6 text-muted-foreground">
-              Confirmed Investments
+              Votes
             </dt>
             <dd className="order-1 text-5xl font-bold tracking-tight ">
-              {(angelsLength * 2.5).toFixed(0)}+
+              {formatNumber(votes)}
             </dd>
           </div>
           <div className="flex flex-col border-t border-gray-100 dark:border-gray-900 p-6 text-center sm:border-0 sm:border-l">

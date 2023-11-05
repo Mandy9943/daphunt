@@ -4,7 +4,7 @@ export interface IProject {
   name: string;
   slogan: string;
   site: string;
-  tools: string;
+  tools: string[];
   details: string;
   twitterUrl: string | null;
   githubUrl: string | null;

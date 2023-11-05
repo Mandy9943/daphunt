@@ -13,20 +13,26 @@ import WebsiteIcon from "./Icons/WebsiteIcon";
 import { Button } from "./ui/button";
 
 export default function InvestorTable({
-  angels,
+  projects,
   search,
 }: {
-  angels: IProject[];
+  projects: IProject[];
   search: string;
 }) {
   const address = useAppSelector(selectUserAddress);
   const handleVote = async (projectId: number) => {
-    try {
-      await api.post("/vote", { address, id: projectId });
-      toast.success("Your vote has been succesfully sent!");
-    } catch (error) {
-      toast.error("Error: " + ErrorMessage(error));
-    }
+    toast.promise(api.post("/vote", { address, id: projectId }), {
+      pending: "Sending your vote...",
+      success: "Your vote has been succesfully sent!",
+      error: {
+        render({ data }) {
+          console.log({ data });
+
+          // When the promise reject, data will contains the error
+          return ErrorMessage(data, "Your vote has not been sent!");
+        },
+      },
+    });
   };
 
   return (
@@ -71,7 +77,7 @@ export default function InvestorTable({
           </tr>
         </thead>
         <tbody className="md:divide-y divide-gray-200 md:bg-white dark:md:bg-black grid grid-cols-1 gap-3 sm:grid-cols-2 md:table-row-group">
-          {angels.map((person) => (
+          {projects.map((person) => (
             <tr
               key={person.id}
               className="grid grid-cols-3 gap-1 md:table-row  rounded-lg md:rounded-none md:bg-transparent shadow md:shadow-none border border-gray-200 md:border-x-0 py-3 px-2 md:p-0"
@@ -133,11 +139,9 @@ export default function InvestorTable({
                 />
               </td>
               <td className="col-span-3 whitespace-nowrap px-3 md:px-2 md:py-3 text-sm text-gray-500 -mt-2 md:mt-0">
-                <Highlighter
-                  searchWords={search.split(" ")}
-                  autoEscape={true}
-                  textToHighlight={person.tools ?? "Software Engineer"}
-                />
+                <div className="flex flex-wrap gap-2">
+                  {person.tools.join(", ")}
+                </div>
               </td>
               <td className="col-span-3 row-start-2 whitespace-nowrap px-0 md:px-2 md:py-3 text-sm text-gray-500 justify-self-end">
                 <Highlighter
@@ -169,7 +173,7 @@ export default function InvestorTable({
           ))}
         </tbody>
       </table>
-      {angels.length === 0 && (
+      {projects.length === 0 && (
         <div className="text-center my-10">No results found</div>
       )}
     </div>

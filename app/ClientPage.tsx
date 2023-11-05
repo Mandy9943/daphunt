@@ -2,14 +2,13 @@
 
 import { IProject } from "@/types/project.type";
 import Fuse from "fuse.js";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import Footer from "../components/Footer";
 import InvestorTable from "../components/InvestorTable";
 import SearchBar from "../components/SearchBar";
 import Stats from "../components/Stats";
-import { checkSizes, classNames, compare, searchOptions } from "../utils/utils";
+import { compare, searchOptions } from "../utils/utils";
 
 interface IProps {
   data: IProject[];
@@ -24,7 +23,7 @@ export default function Dashboard({ data }: IProps) {
   const searchParams = useSearchParams();
   const category = searchParams!.get("category");
 
-  // Define filtered & sorted angels array
+  // Define filtered & sorted projects array
   const ALL_ANGELS = allAngels
     .filter((angel: any) => !angel.hidden)
     .sort(compare)
@@ -35,27 +34,27 @@ export default function Dashboard({ data }: IProps) {
 
   // Fuzzy search with highlighting
   const fuse = new Fuse(ALL_ANGELS, searchOptions);
-  const angels = useMemo(() => {
+  const projects = useMemo(() => {
     if (search.length > 0) {
       return fuse.search(search).map((match) => match.item);
     }
     return ALL_ANGELS;
   }, [search, ALL_ANGELS]);
 
-  console.log("angels", angels);
+  console.log("projects", projects);
 
   // Get stats
-  const companies = [...new Set(angels.map((angel: any) => angel.company))];
+  const companies = [...new Set(projects.map((angel: any) => angel.company))];
   console.log("companies", companies);
 
-  // const allChecksizes = angels
+  // const allChecksizes = projects
   //   .filter((angel: any) => angel.checksize_id)
   //   .map((angel: any) => getCheckSizeForId(angel.checksize_id));
   // const averageCheck =
   //   allChecksizes.reduce((a: number, b: number) => a + b, 0) /
   //   allChecksizes.length;
 
-  const allAPY = angels.map((project) => project.apr);
+  const allAPY = projects.map((project) => project.apr);
   const averageCheck =
     allAPY.reduce((a: number, b: number) => a + b, 0) / allAPY.length;
 
@@ -71,12 +70,13 @@ export default function Dashboard({ data }: IProps) {
         </div>
       </div>
       <Stats
-        angelsLength={angels.length}
+        angelsLength={projects.length}
         averageCheck={averageCheck}
         companiesLength={companies.length}
+        votes={projects.reduce((a: number, b) => a + b._count.votedUp, 0)}
       />
-      <div className="sm:flex flex-col md:flex-row justify-between mt-4">
-        <span className="isolate mt-5 inline-flex rounded-md shadow-sm w-fit">
+      <div className="sm:flex flex-col md:flex-row justify-end mt-4">
+        {/* <span className="isolate mt-5 inline-flex rounded-md shadow-sm w-fit">
           {checkSizes.map((checkSize) => (
             <Link
               href={checkSize.id !== "7" ? `/?category=${checkSize.id}` : "/"}
@@ -91,14 +91,14 @@ export default function Dashboard({ data }: IProps) {
               {checkSize.label}
             </Link>
           ))}
-        </span>
+        </span> */}
         <SearchBar search={search} setSearch={setSearch} />
       </div>
       <div className="mt-8 flex flex-col">
         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle px-6 lg:px-8">
             <div className="overflow-hidden md:shadow md:ring-1 md:ring-black md:ring-opacity-5 rounded-lg">
-              <InvestorTable angels={angels} search={search} />
+              <InvestorTable projects={projects} search={search} />
             </div>
             {/* <div className="text-center mt-10"> */}
             <Footer />

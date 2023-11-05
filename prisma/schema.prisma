@@ -9,13 +9,13 @@ datasource db {
 }
 
 model Project {
-  id           Int     @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   logo         String
   name         String
   slogan       String
   site         String
   apr          Float
-  tools        String
+  tools        String[] @default([])
   details      String
   twitterUrl   String?
   githubUrl    String?

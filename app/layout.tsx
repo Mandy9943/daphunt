@@ -6,19 +6,17 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
 import "../styles/globals.css";
 
-let title = "AI Angel Investors";
-let description = "Find your next AI angel";
-let url = "https://www.aiangels.fund";
-let ogimage = "https://www.aiangels.fund/og-image.png";
-let sitename = "aiangels.fund";
+let title = "Daphunt";
+let description = "Find the next money making dapp to invest your cryptos";
+let url = "https://daphunt.com";
+let ogimage = "https://daphunt.com/og-image.png";
+let sitename = "daphunt";
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title,
   description,
-  icons: {
-    icon: "/favicon.ico",
-  },
+
   openGraph: {
     images: [ogimage],
     title,
