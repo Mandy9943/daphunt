@@ -6,8 +6,8 @@ interface IProps {
 }
 const ToolsSelector = ({ onToolsChange }: IProps) => {
   const [tool, setTool] = useState("");
-  const [toolBubble, setToolBubble] = useState("");
   const [tools, setTools] = useState<string[]>([]);
+  const [inputFocus, setInputFocust] = useState(false);
   const handleUserKeyEnter = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key !== "Enter" && e.key !== ",") return;
 
@@ -48,6 +48,11 @@ const ToolsSelector = ({ onToolsChange }: IProps) => {
             </div>
           );
         })}
+        {tools.length === 0 && tool.length === 0 && !inputFocus && (
+          <span className="text-gray-500">
+            pools, swaps, dollar cost averaging
+          </span>
+        )}
         <Badge
           variant={"secondary"}
           disable={tool.length === 0}
@@ -63,6 +68,8 @@ const ToolsSelector = ({ onToolsChange }: IProps) => {
             // placeholder={
             //   tools.length > 0 ? "" : "pools, swaps, dollar cost averaging"
             // }
+            onFocus={() => setInputFocust(true)}
+            onBlur={() => setInputFocust(false)}
             id="tool"
             value={tool}
             onChange={(e) => setTool(e.target.value)}
