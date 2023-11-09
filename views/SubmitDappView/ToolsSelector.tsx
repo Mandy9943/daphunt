@@ -6,14 +6,20 @@ interface IProps {
 }
 const ToolsSelector = ({ onToolsChange }: IProps) => {
   const [tool, setTool] = useState("");
+  const [toolBubble, setToolBubble] = useState("");
   const [tools, setTools] = useState<string[]>([]);
   const handleUserKeyEnter = (e: KeyboardEvent<HTMLDivElement>) => {
-    console.log(e);
-
     if (e.key !== "Enter" && e.key !== ",") return;
 
     e.stopPropagation();
     e.preventDefault();
+    addTool();
+  };
+  const removeTool = (tool: string) => {
+    setTools(tools.filter((t) => t !== tool));
+  };
+
+  const addTool = () => {
     console.log("Keydown");
 
     console.log("Enter");
@@ -22,16 +28,13 @@ const ToolsSelector = ({ onToolsChange }: IProps) => {
     setTools(Array.from(noRepetedToolsSet));
     setTool("");
   };
-  const removeTool = (tool: string) => {
-    setTools(tools.filter((t) => t !== tool));
-  };
 
   useEffect(() => {
     onToolsChange(tools);
   }, [tools.length]);
   return (
-    <div className="p-3 rounded bg-transparent border min-h-[160px] flex flex-col">
-      <div className="flex gap-4">
+    <div className="p-3 rounded bg-transparent border min-h-[160px] flex flex-col flex-wrap">
+      <div className="flex gap-4 flex-wrap">
         {tools.map((tool) => {
           return (
             <div key={tool} className="flex gap-2">
@@ -45,17 +48,27 @@ const ToolsSelector = ({ onToolsChange }: IProps) => {
             </div>
           );
         })}
-        <input
-          className="bg-transparent focus:outline-none focus:ring-0 w-full focus-visible:bg-transparent "
-          type="text"
-          placeholder={
-            tools.length > 0 ? "" : "pools, swaps, dollar cost averaging"
-          }
-          id="tool"
-          value={tool}
-          onChange={(e) => setTool(e.target.value)}
-          onKeyDown={handleUserKeyEnter}
-        />
+        <Badge
+          variant={"secondary"}
+          disable={tool.length === 0}
+          onClick={() => tool.length > 0 && addTool()}
+        >
+          <input
+            className="bg-transparent focus:outline-none focus:ring-0  focus-visible:bg-transparent"
+            style={{
+              width: `${25 + tool.length * 6}px`,
+            }}
+            autoComplete="off"
+            type="text"
+            // placeholder={
+            //   tools.length > 0 ? "" : "pools, swaps, dollar cost averaging"
+            // }
+            id="tool"
+            value={tool}
+            onChange={(e) => setTool(e.target.value)}
+            onKeyDown={handleUserKeyEnter}
+          />
+        </Badge>
       </div>
       <label htmlFor="tool" className="flex-1 w-full"></label>
     </div>
