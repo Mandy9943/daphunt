@@ -128,7 +128,7 @@ const SubmitDappView = () => {
               <Label>
                 Dapp tools{" "}
                 <span className="text-muted-foreground">
-                  (use enter to add a new tool)
+                  (use enter or a coma to add a new tool)
                 </span>{" "}
               </Label>
               <ToolsSelector onToolsChange={handleToolsChange} />
