@@ -37,7 +37,7 @@ export default function InvestorTable({
 
   return (
     <div>
-      <table className="min-w-full md:divide-y bg-gray-100 dark:bg-gray-900 md:bg-transparent divide-gray-300 rounded-lg overflow-hidden md:rounded-none">
+      <table className="min-w-full md:divide-y bg-gray-100 dark:bg-zinc-900 md:bg-transparent divide-gray-300 rounded-lg overflow-hidden md:rounded-none">
         <thead className="bg-gray-50 dark:bg-gray-950 hidden md:table-header-group">
           <tr>
             <th
@@ -158,16 +158,18 @@ export default function InvestorTable({
                 />
               </td>
               <td className="col-span-3 md:max-w-xs px-3 md:px-2 md:py-3 text-sm text-gray-500">
-                <Button
-                  className="py-2 h-14 bg-gray-200 dark:bg-gray-800 dark:text-gray-200"
-                  variant={"outline"}
-                  onClick={() => handleVote(person.id)}
-                >
-                  <span className="flex flex-col">
-                    <Triangle />
-                    {person._count.votedUp || 0}
-                  </span>
-                </Button>
+                <div className="flex justify-center sm:block">
+                  <Button
+                    className="py-2 h-14 bg-gray-200 dark:bg-zinc-800 dark:text-gray-200"
+                    variant={"outline"}
+                    onClick={() => handleVote(person.id)}
+                  >
+                    <span className="flex flex-col">
+                      <Triangle />
+                      {person._count.votedUp || 0}
+                    </span>
+                  </Button>
+                </div>
               </td>
             </tr>
           ))}

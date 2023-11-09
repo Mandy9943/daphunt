@@ -19,31 +19,7 @@
 // const DustView = React.lazy(() => import("views/DustView/DustView"));
 
 export const routeNames = {
-  home: "/multiversx/rewards",
-  rewards: "/multiversx/rewards",
-  swap: "/swap",
-  swapLp: "/swapLp",
-
-  // play: "/play",
-  // coinFlip: "/play/coin-flip",
-  // forge: "/the-forge",
-  farm: "/multiversx/farm",
-  stake: "/multiversx/stake",
-  play: "/multiversx/play",
-  dust: "/multiversx/dust",
-  aggregator: "/multiversx/aggregator",
-  defi: "/multiversx/defi",
-  docs: "/docs",
-  blog: "/blog",
-  upgrade: "/multiversx/upgrade",
-
-  // internals
-  about: "/about",
-  sustainability: "/sustainability",
-  sales: "/sales",
-  security: "/security",
-  terms: "/terms-of-use",
-  openSource: "/open-source",
+  submitDapp: "/new",
 };
 
 export const externnalLinks = {
@@ -54,32 +30,7 @@ export const externnalLinks = {
 
 export const mainSiteRoutes = [
   {
-    path: routeNames.aggregator,
-    title: "Swap Aggregator",
+    path: routeNames.submitDapp,
+    title: "Submit Dapp",
   },
-
-  {
-    path: routeNames.farm,
-    title: "Farm",
-  },
-
-  {
-    path: routeNames.play,
-    title: "Play",
-    soon: false,
-  },
-
-  {
-    title: "The Forge",
-    soon: true,
-  },
-  {
-    path: routeNames.dust,
-    title: "Dust",
-  },
-  {
-    path: routeNames.defi,
-    title: "Defi",
-  },
-  {},
 ];
