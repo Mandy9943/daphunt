@@ -68,7 +68,7 @@ export default function AvatarC({
   return (
     <div className="flex mb-14 items-center gap-6 relative flex-col sm:flex-row">
       {avatarUrl ? (
-        <Avatar className="hidden  md:flex uppercase w-[100px] h-[100px]">
+        <Avatar className="flex uppercase w-[100px] h-[100px]">
           <AvatarImage src={avatarUrl} />
         </Avatar>
       ) : (
