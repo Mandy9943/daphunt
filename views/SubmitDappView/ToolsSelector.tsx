@@ -8,7 +8,10 @@ const ToolsSelector = ({ onToolsChange }: IProps) => {
   const [tool, setTool] = useState("");
   const [tools, setTools] = useState<string[]>([]);
   const handleUserKeyEnter = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key !== "Enter") return;
+    console.log(e);
+
+    if (e.key !== "Enter" && e.key !== ",") return;
+
     e.stopPropagation();
     e.preventDefault();
     console.log("Keydown");
