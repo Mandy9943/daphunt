@@ -66,7 +66,7 @@ export default function AvatarC({
   };
 
   return (
-    <div className="flex mb-14 items-center gap-6 relative">
+    <div className="flex mb-14 items-center gap-6 relative flex-col sm:flex-row">
       {avatarUrl ? (
         <Avatar className="hidden  md:flex uppercase w-[100px] h-[100px]">
           <AvatarImage src={avatarUrl} />
@@ -84,7 +84,10 @@ export default function AvatarC({
         </div>
 
         <Button size={"sm"} asChild>
-          <label className="button primary block" htmlFor="single">
+          <label
+            className="button primary block whitespace-nowrap"
+            htmlFor="single"
+          >
             {uploading ? "Uploading ..." : "Select an image"}
           </label>
         </Button>
