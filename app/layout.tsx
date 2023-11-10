@@ -1,6 +1,7 @@
 import RootProviders from "@/providers/rootProviders";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
+import { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
@@ -50,6 +51,7 @@ export default function RootLayout({
               {children}
             </div>
           </div>
+          <Toaster position="top-right" />
           <Analytics />
         </RootProviders>
       </body>
