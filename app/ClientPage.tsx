@@ -1,5 +1,6 @@
 "use client";
 
+import NewsletterForm from "@/components/NewsletterForm/NewsletterForm";
 import { IProject } from "@/types/project.type";
 import Fuse from "fuse.js";
 import { useSearchParams } from "next/navigation";
@@ -101,6 +102,7 @@ export default function Dashboard({ data }: IProps) {
               <InvestorTable projects={projects} search={search} />
             </div>
             {/* <div className="text-center mt-10"> */}
+            <NewsletterForm />
             <Footer />
             {/* </div> */}
           </div>
