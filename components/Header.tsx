@@ -14,8 +14,21 @@ export default function Header() {
       <nav className="max-w-7xl  md:text-sm flex sm:flex-row flex-col justify-between items-center gap-6">
         <div className="flex gap-10">
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="logo" width={30} height={30} />
-            <div className="font-bold text-lg">Daphunt</div>
+            <Image
+              src="/logo-black.png"
+              alt="logo"
+              className="block dark:hidden"
+              width={150}
+              height={80}
+            />
+
+            <Image
+              src="/logo-white.png"
+              alt="logo"
+              className="hidden dark:block"
+              width={150}
+              height={80}
+            />
           </Link>
 
           <Button

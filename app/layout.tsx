@@ -1,6 +1,7 @@
 import RootProviders from "@/providers/rootProviders";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
+import Script from "next/script";
 import { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,7 +9,7 @@ import Header from "../components/Header";
 import "../styles/globals.css";
 
 let title = "Daphunt";
-let description = "Find the next money making dapp to invest your cryptos";
+let description = "The Best dApp Directories On MultiversX";
 let url = "https://daphunt.com";
 let ogimage = "https://daphunt.com/og-image.png";
 let sitename = "daphunt";
@@ -42,6 +43,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="light">
+      <Script
+        defer
+        data-domain="daphunt.com"
+        src="https://plausible.io/js/script.js"
+      ></Script>
       <body>
         <RootProviders>
           <ToastContainer />
