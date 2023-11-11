@@ -3,6 +3,7 @@ import Avatar from "@/components/UploadLogo/UploadLogo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import useAuthentication from "@/hooks/useAuthentication";
 import { useAppSelector } from "@/hooks/useRedux";
 import { selectUserAddress } from "@/redux/dapp/dapp-slice";
 import api from "@/services/api";
@@ -16,6 +17,7 @@ import { toFormikValidationSchema } from "zod-formik-adapter";
 import ToolsSelector from "./ToolsSelector";
 
 const SubmitDappView = () => {
+  const { isLoggedIn } = useAuthentication();
   const address = useAppSelector(selectUserAddress);
   const supabase = createClientComponentClient();
   const router = useRouter();
@@ -163,7 +165,7 @@ const SubmitDappView = () => {
             </div>
           </div>
 
-          <Button className="mt-10" type="submit">
+          <Button className="mt-10" type="submit" disabled={!isLoggedIn}>
             Submit Dapp
           </Button>
         </div>
