@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
 import "../styles/globals.css";
 
-let title = "Daphunt";
+let title = "Daphunt: The Best dApp Directories On MultiversX";
 let description = "The Best dApp Directories On MultiversX";
 let url = "https://daphunt.com";
 let ogimage = "https://daphunt.com/og-image.png";
