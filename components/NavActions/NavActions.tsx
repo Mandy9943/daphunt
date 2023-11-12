@@ -22,7 +22,7 @@ const NavbarActions = () => {
     }
   };
   return (
-    <div className="ml-auto flex items-center gap-x-1">
+    <div className="ml-auto flex items-center gap-x-1 sm:gap-x-4">
       <Button
         className="flex items-center gap-x-[4px] w-[40px] sm:w-auto px-2 sm:px-3"
         variant={"outline"}

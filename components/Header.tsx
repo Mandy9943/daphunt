@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="max-w-7xl  md:text-sm flex justify-between items-center gap-2 sm:gap-6">
+      <nav className="max-w-7xl  md:text-sm flex justify-between items-center gap-2  sm:gap-6">
         <div className="flex gap-10">
           <Link href="/" className="flex items-center gap-3">
             <Image
