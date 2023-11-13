@@ -3,9 +3,8 @@
 import Login from "@/components/Login/Login";
 import { Button } from "@/components/ui/button";
 import useAuthentication from "@/hooks/useAuthentication";
-import { Dot, Moon, Send, Sun, Zap } from "lucide-react";
+import { BarChart4, Send, Zap } from "lucide-react";
 import { useTheme } from "next-themes";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -22,15 +21,20 @@ const NavbarActions = () => {
     }
   };
   return (
-    <div className="ml-auto flex items-center gap-x-1 sm:gap-x-4">
+    <div className="ml-auto flex items-center gap-x-3 sm:gap-x-4">
       <Button
-        className="flex items-center gap-x-[4px] w-[40px] sm:w-auto px-2 sm:px-3"
+        asChild
         variant={"outline"}
+        onClick={onSubmitDappClick}
+        size={"sm"}
       >
-        <Image src="/images/egld.svg" alt="" width={22} height={22} />
-        <span className="hidden sm:flex">
-          <Dot size={20} className="text-green-500" /> MultiversX
-        </span>
+        <a
+          href="https://plausible.io/daphunt.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <BarChart4 size={"18px"} />
+        </a>
       </Button>
 
       <Button variant={"outline"} onClick={onSubmitDappClick} size={"sm"}>
@@ -43,23 +47,7 @@ const NavbarActions = () => {
         <ModeToggle />
       </div> */}
       <Login />
-      {theme === "dark" ? (
-        <Button
-          size={"sm"}
-          variant={"outline"}
-          onClick={() => setTheme("light")}
-        >
-          <Sun size={"18px"} />
-        </Button>
-      ) : (
-        <Button
-          size={"sm"}
-          variant={"outline"}
-          onClick={() => setTheme("dark")}
-        >
-          <Moon size={"18px"} />
-        </Button>
-      )}
+
       <Button
         size={"sm"}
         className="flex sm:hidden"
