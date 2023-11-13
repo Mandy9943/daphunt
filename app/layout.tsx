@@ -11,7 +11,7 @@ import "../styles/globals.css";
 let title = "Daphunt: The Best dApp Directories On MultiversX";
 let description = "The Best dApp Directories On MultiversX";
 let url = "https://daphunt.com";
-let ogimage = "https://daphunt.com/og-image.png";
+let ogimage = "https://daphunt.com/og-image.jpg";
 let sitename = "daphunt";
 
 export const metadata: Metadata = {
