@@ -72,6 +72,16 @@ export default function Dashboard({ data }: IProps) {
             <span className="gradienteTitle"> money making dapp </span>to invest
             your cryptos
           </h2>
+
+          <p>
+            <a
+              href="http://www.dapfy.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              built by dapfy.com
+            </a>
+          </p>
         </div>
       </div>
       <Stats
