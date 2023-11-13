@@ -9,15 +9,6 @@ export default function Footer() {
           means the dapp has confirmed their information is accurate and up to
           date.
         </div>
-        <div>
-          <a
-            href="https://plausible.io/daphunt.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Analitics
-          </a>
-        </div>
       </div>
     </footer>
   );
