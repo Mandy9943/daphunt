@@ -10,6 +10,9 @@
     "vercel-build": "prisma generate && next build",
     "prisma:generate": "prisma generate"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@multiversx/sdk-dapp": "^2.23.0",
     "@prisma/client": "^5.3.1",
