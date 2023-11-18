@@ -37,19 +37,21 @@ const SubmitDappView = () => {
       const logo: File = values.logo as any;
 
       const fileExt = logo.name.split(".").pop();
-      const filePath = `${values.name.trim()}-${Math.random()}-${Math.random()}.${fileExt}`;
-
+      const filePath =
+        `${values.name.trim()}-${Math.random()}-${Math.random()}.${fileExt}`.trim();
+      const submitDapp = async () => {
+        await supabase.storage.from("logos").upload(filePath, logo);
+        return api.post("/submit-dapp", {
+          data: {
+            ...values,
+            logo: filePath,
+          },
+          address,
+        });
+      };
       await toast.promise(
-        Promise.all([
-          supabase.storage.from("logos").upload(filePath, logo),
-          api.post("/submit-dapp", {
-            data: {
-              ...values,
-              logo: filePath,
-            },
-            address,
-          }),
-        ]),
+        submitDapp,
+
         {
           success: "Dapp submitted!",
           pending: "Submitting dapp...",
