@@ -21,6 +21,7 @@ export default function InvestorTable({
 }) {
   const address = useAppSelector(selectUserAddress);
   const handleVote = async (projectId: number) => {
+    if(!address) return toast.error("Please connect your wallet first" , {autoClose: 3000})
     toast.promise(api.post("/vote", { address, id: projectId }), {
       pending: "Sending your vote...",
       success: "Your vote has been successfully sent!",
@@ -64,12 +65,12 @@ export default function InvestorTable({
             >
               APY
             </th>
-            <th
+            {/* <th
               scope="col"
               className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
             >
               Details
-            </th>
+            </th> */}
             <th
               scope="col"
               className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
@@ -80,7 +81,7 @@ export default function InvestorTable({
           {projects.map((person) => (
             <tr
               key={person.id}
-              className="grid grid-cols-3 gap-1 md:table-row  rounded-lg md:rounded-none md:bg-transparent shadow md:shadow-none border border-gray-200 md:border-x-0 py-3 px-2 md:p-0"
+              className="grid grid-cols-3  gap-[15px] md:table-row  rounded-lg md:rounded-none md:bg-transparent shadow md:shadow-none border border-gray-200 md:border-x-0 py-3 px-2 md:p-0"
             >
               <td className="col-span-3 whitespace-nowrap pl-3 md:py-2 md:pl-6 text-sm sm:pl-6">
                 <div className="flex items-center">
@@ -100,9 +101,9 @@ export default function InvestorTable({
                         autoEscape={true}
                         textToHighlight={person.name}
                       />
-                      {person.twitterUrl && (
+                      {/* {person.verified && (
                         <CheckIcon className="inline ml-1" />
-                      )}
+                      )} */}
                     </div>
                     <div className="flex space-x-2 items-center mt-1">
                       {person.twitterUrl && (
@@ -131,12 +132,17 @@ export default function InvestorTable({
                   </div>
                 </div>
               </td>
-              <td className="col-span-1 row-start-2 whitespace-nowrap px-3 md:px-2 md:py-3 text-sm text-gray-500 font-bold md:font-normal">
-                <Highlighter
+              <td className="col-span-3   px-3 md:px-2 md:py-3 text-sm text-gray-500 font-bold md:font-normal max-w-[300px]">
+
+               <p className="max-w-[300px] break-all overflow-hidden">
+                {person.slogan}
+               </p>
+                {/* <Highlighter
                   searchWords={search.split(" ")}
                   autoEscape={true}
                   textToHighlight={person.slogan ?? "Unknown"}
-                />
+                  className="max-w-[200px] break-all"
+                /> */}
               </td>
               <td className="col-span-3 whitespace-nowrap px-3 md:px-2 md:py-3 text-sm text-gray-500 -mt-2 md:mt-0 max-w-[150px]">
               <div className="w-full flex flex-wrap">
@@ -160,20 +166,20 @@ export default function InvestorTable({
                 )}
               </div>
               </td>
-              <td className="col-span-3 row-start-2 whitespace-nowrap px-0 md:px-2 md:py-3 text-sm text-gray-500 justify-self-end">
+              <td className="col-span-3 whitespace-nowrap px-0 px-2 md:py-3 text-sm text-gray-500  md:justify-self-end justify-normal">
                 <Highlighter
                   searchWords={search.split(" ")}
                   autoEscape={true}
                   textToHighlight={person.apr + " %"}
                 />
               </td>
-              <td className="col-span-3 md:max-w-xs px-3 md:px-2 md:py-3 text-sm text-gray-500">
+              {/* <td className="col-span-3 md:max-w-xs px-3 md:px-2 md:py-3 text-sm text-gray-500">
                 <Highlighter
                   searchWords={search.split(" ")}
                   autoEscape={true}
                   textToHighlight={person.details}
                 />
-              </td>
+              </td> */}
               <td className="col-span-3 md:max-w-xs px-3 md:px-2 md:py-3 text-sm text-gray-500">
                 <div className="flex justify-center sm:block">
                   <Button

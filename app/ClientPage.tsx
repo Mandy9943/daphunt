@@ -61,7 +61,7 @@ export default function Dashboard({ data }: IProps) {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto px-4 md:px-8 sm:pt-16 pt-8 ">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 sm:pt-16 pt-8 ">
         <div className="space-y-5 max-w-4xl mx-auto text-center">
           <h1 className="text-3xl text-gray-800 dark:text-gray-200 font-extrabold mx-auto sm:text-6xl max-w-3xl">
             The Best dApp Directories On MultiversX

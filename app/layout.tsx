@@ -52,7 +52,7 @@ export default function RootLayout({
         <RootProviders>
           <ToastContainer />
           <div className="min-h-screen px-6 lg:px-8">
-            <div className="mx-auto max-w-6xl pt-4">
+            <div className="mx-auto max-w-7xl pt-4">
               <Header />
               {children}
             </div>
