@@ -8,11 +8,11 @@ export default function AvatarC({
   id,
 
   size,
-  onChage,
+  onChange: onChange,
 }: {
   id: number;
   size: number;
-  onChage: (file: File) => void;
+  onChange: (file: File) => void;
 }) {
   const supabase = createClientComponentClient();
   const [avatarUrl, setAvatarUrl] = useState(null);
@@ -57,7 +57,7 @@ export default function AvatarC({
 
       reader.readAsDataURL(file);
 
-      onChage(file);
+      onChange(file);
     } catch (error) {
       alert("Error uploading avatar!");
     } finally {

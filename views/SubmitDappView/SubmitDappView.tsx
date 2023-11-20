@@ -76,7 +76,7 @@ const SubmitDappView = () => {
     onBlur: formik.handleBlur,
   };
 
-  const onChageLogo = (file: File) => {
+  const onChangeLogo = (file: File) => {
     formik.setFieldValue("logo", file);
   };
 
@@ -87,14 +87,14 @@ const SubmitDappView = () => {
 
   return (
     <div className="my-10">
-      <h1 className="text-2xl mb-6">Luch your dApp</h1>
+      <h1 className="text-2xl mb-6">Launch your dApp</h1>
       <h2 className="mb-1">Tell us about your dapp</h2>
       <div className="text-muted-foreground mb-8">
         Share basic info to help users find your awesome creation.
       </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="flex flex-col">
-          <Avatar id={5} onChage={onChageLogo} size={156} />
+          <Avatar id={5} onChange={onChangeLogo} size={156} />
 
           <div className="flex gap-8 flex-col">
             <div className="flex flex-col gap-3">

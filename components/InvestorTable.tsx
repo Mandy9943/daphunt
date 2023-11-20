@@ -23,7 +23,7 @@ export default function InvestorTable({
   const handleVote = async (projectId: number) => {
     toast.promise(api.post("/vote", { address, id: projectId }), {
       pending: "Sending your vote...",
-      success: "Your vote has been succesfully sent!",
+      success: "Your vote has been successfully sent!",
       error: {
         render({ data }) {
           console.log({ data });
@@ -138,10 +138,27 @@ export default function InvestorTable({
                   textToHighlight={person.slogan ?? "Unknown"}
                 />
               </td>
-              <td className="col-span-3 whitespace-nowrap px-3 md:px-2 md:py-3 text-sm text-gray-500 -mt-2 md:mt-0">
-                <div className="flex flex-wrap gap-2">
-                  {person.tools.join(", ")}
-                </div>
+              <td className="col-span-3 whitespace-nowrap px-3 md:px-2 md:py-3 text-sm text-gray-500 -mt-2 md:mt-0 max-w-[150px]">
+              <div className="w-full flex flex-wrap">
+
+                {person.tools.slice(0,3).map((tool) => (
+                  <Highlighter
+                  key={tool}
+                    searchWords={search.split(" ")}
+                    autoEscape={true}
+                    textToHighlight={tool}
+                    className="bg-gray-200 dark:bg-zinc-800 dark:text-gray-200 px-2 py-1 mr-2 mb-2 rounded-full text-xs"
+
+                  />
+
+                ))}
+
+                {person.tools.length > 3 && (
+                  <div className="bg-gray-200 dark:bg-zinc-800 dark:text-gray-200 px-2 py-1 mr-2 mb-2 rounded-full text-xs">
+                    + {person.tools.length - 3} more
+                  </div>
+                )}
+              </div>
               </td>
               <td className="col-span-3 row-start-2 whitespace-nowrap px-0 md:px-2 md:py-3 text-sm text-gray-500 justify-self-end">
                 <Highlighter
